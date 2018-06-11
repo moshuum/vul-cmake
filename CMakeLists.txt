@@ -3,25 +3,22 @@ project (hello)
 #set(CMAKE_BUILD_TYPE Debug)
 
 
+
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
+find_package(SQLite3 REQUIRED)
+set(${SQLITE3_INCLUDE_DIRS})
+
+find_package(Boost 1.36.0)
+if(Boost_FOUND)
+  include_directories(${Boost_INCLUDE_DIRS})
+endif()
+
+
+#include (cmake_modules/sqlite3Config.cmake)
+
 # Add a custom CMake Modules directory
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
-
-add_executable(helloapp src/helloworld.cpp)
-
-find_package(sqlite3)
-
-#set (ALL_SQLITE_TARGETS)
-
-#add_subdirectory(subproject1)
-#add_subdirectory(subproject2)
+#set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules")
 
 
-
-if (SQLITE3_FOUND)
-  include_directories(${SQLITE3_INCLUDE_DIRS})
-  target_link_libraries (hello ${SQLITE3_LIBRARIES})
-  message("sqlite found ${SQLITE3_INCLUDE_DIRS}")
-endif (SQLITE3_FOUND)
-
-
-#add_executable(helloapp src/helloworld.cpp)
+add_executable(main src/main.cpp)
+target_link_libraries(main ${SQLITE3_LIBRARIES})
