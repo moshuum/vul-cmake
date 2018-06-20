@@ -17,7 +17,7 @@ The dependencies are:
 
 ### Number of dependencies:  
 - 1 direct dependency.  
-- - transitive dependency.  
+- --- transitive dependency.  
 - 2 vulnerabilities. 
   
 #### Vulnerable Call Chain
